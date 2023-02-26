@@ -25,8 +25,8 @@ export default class UserRegisterController {
       })
 
       await Mail.send((message) => {
-        message.to(email)
-          .from("advancedadonis@gmail.com")
+          message.to(email)
+          .from("taxircontato@gmail.com")
           .subject("Advaced AdonisJS")
           .htmlView("emails/user-register", { link: link })
 
