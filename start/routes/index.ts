@@ -2,6 +2,7 @@ import Route from '@ioc:Adonis/Core/Route'
 import './auth'
 import './register'
 import './forgot-password'
+import './todo'
 
 Route.get('/', async ({ view }) => {
   return view.render("emails/user-register")
