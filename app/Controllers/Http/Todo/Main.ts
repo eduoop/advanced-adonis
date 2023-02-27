@@ -5,12 +5,15 @@ import UpdateValidator from 'App/Validators/Todo/UpdateValidator'
 import { DateTime } from 'luxon';
 
 export default class TodoController {
-  public async index({ auth, request }: HttpContextContract) {
+  public async index({ auth, request, params }: HttpContextContract) {
     const user = auth.user!
+    const page = request.input('page', params.page)
+    const limit = 2
+
     const { search } = request.qs()
     const todos = await user.related("todos").query().if(search, (query) => {
       query.where("name", "like", `%${search}%`).orWhere("description", "like", `%${search}%`)
-    })
+    }).paginate(page, limit)
 
     return todos
   }
